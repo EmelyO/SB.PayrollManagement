@@ -12,6 +12,11 @@ namespace SB.PayrollManagement.Persistence.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CommissionEmployees>().HasKey(e => e.EmployeeId);
+            modelBuilder.Entity<SalariedEmployees>().HasKey(e => e.EmployeeId);
+            modelBuilder.Entity<HourlyEmployees>().HasKey(e => e.EmployeeId);
+            modelBuilder.Entity<SalariedCommissionEmployees>().HasKey(e => e.EmployeeId);
         }
 
         DbSet<Departments> Departments { get; set; }
@@ -25,7 +30,7 @@ namespace SB.PayrollManagement.Persistence.Context
 
         DbSet<SalariedEmployees> SalariedEmployeesTypes { get;set; }
 
-        DbSet<GovernmentEntities> GovernmentEntities { get; set; }
+        public DbSet<GovernmentEntities> GovernmentEntities { get; set; }
 
         DbSet<HourlyEmployees> HourlyEmployees { get;set; }
 

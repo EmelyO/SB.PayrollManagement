@@ -1,4 +1,4 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
 namespace SB.PayrollManagement.Domain.Entities
 {
     public class Employees

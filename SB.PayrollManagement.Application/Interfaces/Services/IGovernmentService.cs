@@ -2,7 +2,7 @@
 
 namespace SB.PayrollManagement.Application.Interfaces.Services
 {
-    public interface IGovernmentService : IBaseService<GovernmentDto>
+    public interface IGovernmentService : IBaseService<GovernmentDto, CreateGovernmentDto>
     {
     }
 }

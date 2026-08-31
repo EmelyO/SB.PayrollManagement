@@ -2,12 +2,12 @@
 
 namespace SB.PayrollManagement.Application.Interfaces.Services
 {
-    public interface IBaseService<TDto>
+    public interface IBaseService<TDto, TCreateDto>
     {
         Task<OperationResult<TDto>> GetByIdAsync(int id);
         Task<OperationResult<List<TDto>>> GetAllAsync();
-        Task<OperationResult<TDto>> CreateAsync(TDto dto);
-        Task<OperationResult<TDto>> UpdateAsync(int id, TDto dto);
+        Task<OperationResult<TDto>> CreateAsync(TCreateDto dto);
+        Task<OperationResult<TDto>> UpdateAsync(int id, TCreateDto dto);
         Task<OperationResult<TDto>> DeleteAsync(int id);
     }
 }

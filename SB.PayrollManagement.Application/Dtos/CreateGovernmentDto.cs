@@ -1,13 +1,10 @@
 namespace SB.PayrollManagement.Application.Dtos
 {
-    public record GovernmentDto
+    public record CreateGovernmentDto
     {
-        public int Id { get; init; }
         public string Name { get; init; } = string.Empty;
         public string Category { get; init; } = string.Empty;
         public string StatePower { get; init; } = string.Empty;
         public string Sector { get; init; } = string.Empty;
-        public DateTime CreatedDate { get; init; }
-        public DateTime? UpdatedDate { get; init; }
     }
 }
