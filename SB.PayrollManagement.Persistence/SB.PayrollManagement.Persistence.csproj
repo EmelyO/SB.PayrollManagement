@@ -8,8 +8,15 @@
 
   <ItemGroup>
     <Folder Include="Base\" />
-    <Folder Include="Context\" />
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SB.PayrollManagement.Domain\SB.PayrollManagement.Domain.csproj" />
   </ItemGroup>
 
 </Project>

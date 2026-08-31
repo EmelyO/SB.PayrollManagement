@@ -1,0 +1,29 @@
+## .NET / Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Copilot / IntelliCode indices
+.vs/**/CopilotIndices/
+.vs/**/FileContentIndex/
+
+## Resultados de compilación
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+
+## Node / React (si el frontend vive en el mismo repo)
+node_modules/
+dist/
+build/
+.env
+
+## Otros
+*.dll
+*.pdb
