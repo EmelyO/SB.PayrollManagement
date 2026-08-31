@@ -1,0 +1,13 @@
+﻿using SB.PayrollManagement.Domain.Base;
+
+namespace SB.PayrollManagement.Application.Interfaces.Services
+{
+    public interface IBaseService<TDto>
+    {
+        Task<OperationResult<TDto>> GetByIdAsync(int id);
+        Task<OperationResult<List<TDto>>> GetAllAsync();
+        Task<OperationResult<TDto>> CreateAsync(TDto dto);
+        Task<OperationResult<TDto>> UpdateAsync(int id, TDto dto);
+        Task<OperationResult<TDto>> DeleteAsync(int id);
+    }
+}

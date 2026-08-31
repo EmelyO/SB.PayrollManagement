@@ -5,6 +5,15 @@ namespace SB.PayrollManagement.Persistence.Context
 {
     public class PayrollManagementContext: DbContext
     {
+        public PayrollManagementContext(DbContextOptions<PayrollManagementContext> options) : base(options)
+        {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         DbSet<Departments> Departments { get; set; }
         DbSet<CommissionEmployees> ComissionEmployees { get; set; }
 
