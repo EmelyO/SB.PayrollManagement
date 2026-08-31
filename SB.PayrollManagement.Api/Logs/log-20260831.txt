@@ -293,3 +293,83 @@ WHERE [g].[Id] = @__p_0
 2026-08-31 07:59:06.431 -04:00 [INF] Executed endpoint 'SB.PayrollManagement.Api.Controllers.GovermentEntitiesController.GetById (SB.PayrollManagement.Api)'
 2026-08-31 07:59:06.436 -04:00 [INF] HTTP GET /api/GovermentEntities/182 responded 200 in 121.6725 ms
 2026-08-31 07:59:06.441 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/api/GovermentEntities/182 - 200 null application/json; charset=utf-8 140.7726ms
+2026-08-31 19:35:40.241 -04:00 [INF] Now listening on: https://localhost:7248
+2026-08-31 19:35:40.404 -04:00 [INF] Now listening on: http://localhost:5290
+2026-08-31 19:35:40.730 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-31 19:35:40.735 -04:00 [INF] Hosting environment: Development
+2026-08-31 19:35:40.739 -04:00 [INF] Content root path: C:\Users\empao\OneDrive\Desktop\SB.PayrollManagement\SB.PayrollManagement.Api
+2026-08-31 19:35:41.091 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/swagger/index.html - null null
+2026-08-31 19:35:41.526 -04:00 [INF] HTTP GET /swagger/index.html responded 200 in 156.8913 ms
+2026-08-31 19:35:41.559 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/swagger/index.html - 200 null text/html;charset=utf-8 482.0312ms
+2026-08-31 19:35:41.590 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/_vs/browserLink - null null
+2026-08-31 19:35:41.590 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-31 19:35:41.637 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/_framework/aspnetcore-browser-refresh.js - 200 16533 application/javascript; charset=utf-8 48.7102ms
+2026-08-31 19:35:41.712 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/_vs/browserLink - 200 null text/javascript; charset=UTF-8 123.1309ms
+2026-08-31 19:35:41.909 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/swagger/v1/swagger.json - null null
+2026-08-31 19:35:41.951 -04:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 31.6015 ms
+2026-08-31 19:35:41.959 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 51.4294ms
+2026-08-31 19:41:02.657 -04:00 [INF] Now listening on: https://localhost:7248
+2026-08-31 19:41:02.707 -04:00 [INF] Now listening on: http://localhost:5290
+2026-08-31 19:41:02.911 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-31 19:41:02.914 -04:00 [INF] Hosting environment: Development
+2026-08-31 19:41:02.916 -04:00 [INF] Content root path: C:\Users\empao\OneDrive\Desktop\SB.PayrollManagement\SB.PayrollManagement.Api
+2026-08-31 19:41:03.173 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/swagger/index.html - null null
+2026-08-31 19:41:03.468 -04:00 [INF] HTTP GET /swagger/index.html responded 200 in 95.6815 ms
+2026-08-31 19:41:03.479 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/swagger/index.html - 200 null text/html;charset=utf-8 317.8741ms
+2026-08-31 19:41:03.489 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/_framework/aspnetcore-browser-refresh.js - null null
+2026-08-31 19:41:03.492 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/_vs/browserLink - null null
+2026-08-31 19:41:03.502 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/_framework/aspnetcore-browser-refresh.js - 200 16533 application/javascript; charset=utf-8 12.5041ms
+2026-08-31 19:41:03.549 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.3871ms
+2026-08-31 19:41:03.652 -04:00 [INF] Request starting HTTP/2 GET https://localhost:7248/swagger/v1/swagger.json - null null
+2026-08-31 19:41:03.676 -04:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 17.6678 ms
+2026-08-31 19:41:03.680 -04:00 [INF] Request finished HTTP/2 GET https://localhost:7248/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 28.8439ms
+2026-08-31 19:42:30.440 -04:00 [INF] Request starting HTTP/2 POST https://localhost:7248/api/Users - application/json 75
+2026-08-31 19:42:30.487 -04:00 [INF] Executing endpoint 'SB.PayrollManagement.Api.Controllers.UsersController.Create (SB.PayrollManagement.Api)'
+2026-08-31 19:42:30.522 -04:00 [INF] Route matched with {action = "Create", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(SB.PayrollManagement.Application.Dtos.CreateUserDto) on controller SB.PayrollManagement.Api.Controllers.UsersController (SB.PayrollManagement.Api).
+2026-08-31 19:42:31.194 -04:00 [WRN] No store type was specified for the decimal property 'CommissionRate' on entity type 'CommissionEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.197 -04:00 [WRN] No store type was specified for the decimal property 'GrossSales' on entity type 'CommissionEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.199 -04:00 [WRN] No store type was specified for the decimal property 'HourlyRate' on entity type 'HourlyEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.201 -04:00 [WRN] No store type was specified for the decimal property 'HoursWorked' on entity type 'HourlyEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.203 -04:00 [WRN] No store type was specified for the decimal property 'BaseSalary' on entity type 'SalariedCommissionEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.205 -04:00 [WRN] No store type was specified for the decimal property 'CommissionRate' on entity type 'SalariedCommissionEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.206 -04:00 [WRN] No store type was specified for the decimal property 'GrossSales' on entity type 'SalariedCommissionEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:42:31.207 -04:00 [WRN] No store type was specified for the decimal property 'WeeklySalary' on entity type 'SalariedEmployees'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2026-08-31 19:43:10.815 -04:00 [INF] Executed DbCommand (164ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([CreatedDate], [PasswordHash], [RoleId], [UpdatedDate], [Username])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4);
+2026-08-31 19:43:37.353 -04:00 [INF] Executing OkObjectResult, writing value of type 'SB.PayrollManagement.Domain.Base.OperationResult`1[[SB.PayrollManagement.Application.Dtos.UserDto, SB.PayrollManagement.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-08-31 19:43:40.207 -04:00 [INF] Executed action SB.PayrollManagement.Api.Controllers.UsersController.Create (SB.PayrollManagement.Api) in 69675.8113ms
+2026-08-31 19:43:40.210 -04:00 [INF] Executed endpoint 'SB.PayrollManagement.Api.Controllers.UsersController.Create (SB.PayrollManagement.Api)'
+2026-08-31 19:43:40.213 -04:00 [INF] HTTP POST /api/Users responded 200 in 69735.3817 ms
+2026-08-31 19:43:40.222 -04:00 [INF] Request finished HTTP/2 POST https://localhost:7248/api/Users - 200 null application/json; charset=utf-8 69782.768ms
+2026-08-31 19:44:35.919 -04:00 [INF] Request starting HTTP/2 POST https://localhost:7248/api/Auth/login - application/json 59
+2026-08-31 19:44:35.933 -04:00 [INF] Executing endpoint 'SB.PayrollManagement.Api.Controllers.AuthController.Login (SB.PayrollManagement.Api)'
+2026-08-31 19:44:35.940 -04:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(SB.PayrollManagement.Application.Dtos.LoginDto) on controller SB.PayrollManagement.Api.Controllers.AuthController (SB.PayrollManagement.Api).
+2026-08-31 19:44:36.435 -04:00 [INF] Executed DbCommand (27ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedDate], [u].[PasswordHash], [u].[RoleId], [u].[UpdatedDate], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-08-31 19:44:36.717 -04:00 [INF] Executing UnauthorizedObjectResult, writing value of type '<>f__AnonymousType0`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-31 19:44:36.721 -04:00 [INF] Executed action SB.PayrollManagement.Api.Controllers.AuthController.Login (SB.PayrollManagement.Api) in 777.5769ms
+2026-08-31 19:44:36.724 -04:00 [INF] Executed endpoint 'SB.PayrollManagement.Api.Controllers.AuthController.Login (SB.PayrollManagement.Api)'
+2026-08-31 19:44:36.732 -04:00 [INF] HTTP POST /api/Auth/login responded 401 in 799.4425 ms
+2026-08-31 19:44:36.735 -04:00 [INF] Request finished HTTP/2 POST https://localhost:7248/api/Auth/login - 401 null application/json; charset=utf-8 815.6616ms
+2026-08-31 19:44:43.876 -04:00 [INF] Request starting HTTP/2 POST https://localhost:7248/api/Auth/login - application/json 60
+2026-08-31 19:44:43.886 -04:00 [INF] Executing endpoint 'SB.PayrollManagement.Api.Controllers.AuthController.Login (SB.PayrollManagement.Api)'
+2026-08-31 19:44:43.888 -04:00 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(SB.PayrollManagement.Application.Dtos.LoginDto) on controller SB.PayrollManagement.Api.Controllers.AuthController (SB.PayrollManagement.Api).
+2026-08-31 19:44:43.921 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[CreatedDate], [u].[PasswordHash], [u].[RoleId], [u].[UpdatedDate], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Username] = @__username_0
+2026-08-31 19:44:44.134 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [r].[Id], [r].[Name]
+FROM [Roles] AS [r]
+WHERE [r].[Id] = @__p_0
+2026-08-31 19:44:44.342 -04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-08-31 19:44:44.349 -04:00 [INF] Executed action SB.PayrollManagement.Api.Controllers.AuthController.Login (SB.PayrollManagement.Api) in 457.7254ms
+2026-08-31 19:44:44.353 -04:00 [INF] Executed endpoint 'SB.PayrollManagement.Api.Controllers.AuthController.Login (SB.PayrollManagement.Api)'
+2026-08-31 19:44:44.353 -04:00 [INF] HTTP POST /api/Auth/login responded 200 in 467.0536 ms
+2026-08-31 19:44:44.354 -04:00 [INF] Request finished HTTP/2 POST https://localhost:7248/api/Auth/login - 200 null application/json; charset=utf-8 478.6044ms

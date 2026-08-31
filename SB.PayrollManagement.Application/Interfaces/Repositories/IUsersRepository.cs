@@ -4,5 +4,6 @@ namespace SB.PayrollManagement.Application.Interfaces.Repositories
 {
     public interface IUsersRepository : IBaseRepository<Users>
     {
+        Task<Users?> GetByUsernameAsync(string username);
     }
 }

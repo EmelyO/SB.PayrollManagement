@@ -28,11 +28,11 @@ namespace SB.PayrollManagement.Application.Services
                 var result = await _repository.GetAllAsync(x => true);
                 if (!result.IsSuccess || result.Data is null)
                 {
-                    return OperationResult<List<TDto>>.Failure(result.Message ?? "No se encontraron elementos");
+                    return OperationResult<List<TDto>>.Failure(result.Message ?? "No elements found");
                 }
                 List<TEntity> entities = result.Data;
                 var dtos = entities.Select(MapToDto).ToList();
-                return OperationResult<List<TDto>>.Success("Datos obtenidos", dtos);
+                return OperationResult<List<TDto>>.Success("Data retrieved successfully", dtos);
 
             }
             catch (Exception ex)

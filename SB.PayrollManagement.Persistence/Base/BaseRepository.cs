@@ -60,7 +60,7 @@ namespace SB.PayrollManagement.Persistence.Base
 
                 var innerMessage = ex.InnerException?.Message ?? ex.Message;
 
-                return OperationResult<TEntity>.Failure($"Error agregando entidad: {innerMessage}");
+                return OperationResult<TEntity>.Failure($"Error adding entity: {innerMessage}");
             }
         }
         public virtual async Task<OperationResult<TEntity>> UpdateAsync(TEntity entity)

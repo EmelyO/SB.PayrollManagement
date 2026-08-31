@@ -32,7 +32,7 @@ namespace SB.PayrollManagement.Api.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest("El ID debe ser mayor a 0");
+                return BadRequest("The ID must be greater than 0");
             }
 
             var result = await _governmentService.GetByIdAsync(id);
@@ -59,7 +59,7 @@ namespace SB.PayrollManagement.Api.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest("El ID debe ser mayor a 0");
+                return BadRequest("The ID must be greater than 0");
             }
 
             var result = await _governmentService.UpdateAsync(id, dto);

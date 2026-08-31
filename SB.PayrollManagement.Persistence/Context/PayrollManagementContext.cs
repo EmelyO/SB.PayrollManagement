@@ -34,5 +34,9 @@ namespace SB.PayrollManagement.Persistence.Context
 
         DbSet<HourlyEmployees> HourlyEmployees { get;set; }
 
+        public DbSet<Users> Users { get; set; }
+
+        public DbSet<Roles> Roles { get; set; }
+
     }
 }

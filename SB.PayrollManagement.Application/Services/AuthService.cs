@@ -17,16 +17,16 @@ namespace SB.PayrollManagement.Application.Services
             _configuration = configuration;
         }
 
-        public async Task<string?> GenerateTokenAsync(string codigoEmpleado, string password)
+        public async Task<string?> GenerateTokenAsync(string username, string password)
         {
-            var result = await _usersService.ValidateUserAsync(codigoEmpleado, password);
+            var result = await _usersService.ValidateUserAsync(username, password);
 
             if (!result.IsSuccess || result.Data == null)
                 return null;
 
-            var user = result.Data;
+            var user = result.Data!;
 
-            var secretKey = _configuration["Jwt:Key"];
+            var secretKey = _configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key is not configured");
             var issuer = _configuration["Jwt:Issuer"];
             var audience = _configuration["Jwt:Audience"];
 
@@ -37,9 +37,6 @@ namespace SB.PayrollManagement.Application.Services
             {
                 new Claim("UsuarioID", user.UsuarioId.ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Usuario),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Usuario),
-                new Claim(JwtRegisteredClaimNames.Email, user.CorreoInstitucional),
-                new Claim(ClaimTypes.Name, user.NombreCompleto),
                 new Claim(ClaimTypes.NameIdentifier, user.Usuario),
                 new Claim(ClaimTypes.Role, user.NombreRol)
             };

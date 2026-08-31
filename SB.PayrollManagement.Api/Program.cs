@@ -28,6 +28,11 @@ try
     builder.Services.AddScoped<IGovermentRepository, GovernmentRepository>();
     builder.Services.AddScoped<IGovernmentService, GovernmentService>();
 
+    builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+    builder.Services.AddScoped<IRolesRepository, RolesRepository>();
+    builder.Services.AddScoped<IUsersService, UsersService>();
+    builder.Services.AddScoped<IAuthService, AuthService>();
+
     var app = builder.Build();
 
     app.UseGlobalExceptionHandler();
