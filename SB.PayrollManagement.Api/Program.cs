@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using SB.PayrollManagement.Api.Extentions;
 using SB.PayrollManagement.Application.Interfaces.Repositories;
 using SB.PayrollManagement.Application.Interfaces.Services;
 using SB.PayrollManagement.Application.Services;
@@ -28,6 +29,8 @@ try
     builder.Services.AddScoped<IGovernmentService, GovernmentService>();
 
     var app = builder.Build();
+
+    app.UseGlobalExceptionHandler();
 
     app.UseSerilogRequestLogging();
 
