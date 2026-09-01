@@ -9,7 +9,7 @@ using SB.PayrollManagement.Domain.Entities;
 
 namespace SB.PayrollManagement.Application.Services
 {
-    public class UsersService : BaseService<UserDto, CreateUserDto, Users>, IUsersService
+    public class UsersService : BaseService<UserDto, CreateUserDto, CreateUserDto, Users>, IUsersService
     {
         private readonly IUsersRepository _usersRepository;
         private readonly IRolesRepository _rolesRepository;
@@ -17,7 +17,7 @@ namespace SB.PayrollManagement.Application.Services
 
         public UsersService(IUsersRepository usersRepository,
             IRolesRepository rolesRepository,
-            ILogger<BaseService<UserDto, CreateUserDto, Users>> baseLogger,
+            ILogger<BaseService<UserDto, CreateUserDto, CreateUserDto, Users>> baseLogger,
             ILogger<UsersService> logger)
             : base(usersRepository, baseLogger)
         {

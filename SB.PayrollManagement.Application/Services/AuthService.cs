@@ -1,5 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using SB.PayrollManagement.Application.Dtos;
 using SB.PayrollManagement.Application.Interfaces.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,6 +10,8 @@ namespace SB.PayrollManagement.Application.Services
 {
     public class AuthService : IAuthService
     {
+        private const int TokenExpirationMinutes = 120;
+
         private readonly IUsersService _usersService;
         private readonly IConfiguration _configuration;
         public AuthService(IUsersService usersService, IConfiguration configuration)
@@ -17,7 +20,7 @@ namespace SB.PayrollManagement.Application.Services
             _configuration = configuration;
         }
 
-        public async Task<string?> GenerateTokenAsync(string username, string password)
+        public async Task<AuthTokenResult?> GenerateTokenAsync(string username, string password)
         {
             var result = await _usersService.ValidateUserAsync(username, password);
 
@@ -41,17 +44,20 @@ namespace SB.PayrollManagement.Application.Services
                 new Claim(ClaimTypes.Role, user.NombreRol)
             };
 
+            var expiresAtUtc = DateTime.UtcNow.AddMinutes(TokenExpirationMinutes);
+
             var token = new JwtSecurityToken(
                 issuer: issuer,
                 claims: claims,
                 audience: audience,
-                notBefore: DateTime.Now,
-                expires: DateTime.Now.AddMinutes(120),
+                notBefore: DateTime.UtcNow,
+                expires: expiresAtUtc,
                 signingCredentials: credentials
             );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
+            return new AuthTokenResult(tokenString, expiresAtUtc);
         }
     }
 }

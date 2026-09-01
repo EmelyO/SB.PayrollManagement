@@ -17,26 +17,32 @@ namespace SB.PayrollManagement.Persistence.Context
             modelBuilder.Entity<SalariedEmployees>().HasKey(e => e.EmployeeId);
             modelBuilder.Entity<HourlyEmployees>().HasKey(e => e.EmployeeId);
             modelBuilder.Entity<SalariedCommissionEmployees>().HasKey(e => e.EmployeeId);
+
+            modelBuilder.Entity<PayrollRecords>()
+                .HasIndex(p => new { p.EmployeeId, p.WeekStartDate })
+                .IsUnique();
         }
 
-        DbSet<Departments> Departments { get; set; }
-        DbSet<CommissionEmployees> ComissionEmployees { get; set; }
+        public DbSet<Departments> Departments { get; set; }
+        public DbSet<CommissionEmployees> CommissionEmployees { get; set; }
 
-        DbSet<Employees> Employees { get; set; }
+        public DbSet<Employees> Employees { get; set; }
 
-        DbSet<EmployeeTypes> EmployeesTypes { get; set; }
+        public DbSet<EmployeeTypes> EmployeeTypes { get; set; }
 
-        DbSet<SalariedCommissionEmployees> SalariedCommissionEmployees { get; set; }
+        public DbSet<SalariedCommissionEmployees> SalariedCommissionEmployees { get; set; }
 
-        DbSet<SalariedEmployees> SalariedEmployeesTypes { get;set; }
+        public DbSet<SalariedEmployees> SalariedEmployees { get; set; }
 
         public DbSet<GovernmentEntities> GovernmentEntities { get; set; }
 
-        DbSet<HourlyEmployees> HourlyEmployees { get;set; }
+        public DbSet<HourlyEmployees> HourlyEmployees { get; set; }
 
         public DbSet<Users> Users { get; set; }
 
         public DbSet<Roles> Roles { get; set; }
+
+        public DbSet<PayrollRecords> PayrollRecords { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SB.PayrollManagement.Application.Dtos;
 using SB.PayrollManagement.Application.Interfaces.Services;
@@ -7,6 +8,7 @@ namespace SB.PayrollManagement.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GovermentEntitiesController : ControllerBase
     {
         private readonly IGovernmentService _governmentService;
@@ -44,6 +46,7 @@ namespace SB.PayrollManagement.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create([FromBody] CreateGovernmentDto dto)
         {
             var result = await _governmentService.CreateAsync(dto);
@@ -55,6 +58,7 @@ namespace SB.PayrollManagement.Api.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Update(int id, [FromBody] CreateGovernmentDto dto)
         {
             if (id <= 0)

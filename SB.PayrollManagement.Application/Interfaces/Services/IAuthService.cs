@@ -1,8 +1,9 @@
-﻿
+using SB.PayrollManagement.Application.Dtos;
+
 namespace SB.PayrollManagement.Application.Interfaces.Services
 {
     public interface IAuthService
     {
-        Task<string?> GenerateTokenAsync(string username, string password);
+        Task<AuthTokenResult?> GenerateTokenAsync(string username, string password);
     }
 }

@@ -41,10 +41,10 @@ namespace SB.PayrollManagement.Persistence.Base
                 }
                 return OperationResult<TEntity>.Success($"Entity {typeof(TEntity)} retrieved successfully", entity);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return OperationResult<TEntity>.Failure($"Error retrieving entity: {typeof(TEntity)}");
-
+                var innerMessage = ex.InnerException?.Message ?? ex.Message;
+                return OperationResult<TEntity>.Failure($"Error retrieving entity: {typeof(TEntity)} - {innerMessage}");
             }
         }
         public virtual async Task<OperationResult<TEntity>> AddAsync(TEntity entity)

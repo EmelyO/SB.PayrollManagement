@@ -5,13 +5,13 @@ using SB.PayrollManagement.Domain.Base;
 
 namespace SB.PayrollManagement.Application.Services
 {
-    public abstract class BaseService<TDto, TCreateDto, TEntity> : IBaseService<TDto, TCreateDto> where TEntity : class
+    public abstract class BaseService<TDto, TCreateDto, TUpdateDto, TEntity> : IBaseService<TDto, TCreateDto, TUpdateDto> where TEntity : class
     {
         private readonly IBaseRepository<TEntity> _repository;
-        private readonly ILogger<BaseService<TDto, TCreateDto, TEntity>> _logger;
+        private readonly ILogger<BaseService<TDto, TCreateDto, TUpdateDto, TEntity>> _logger;
 
         protected BaseService(IBaseRepository<TEntity> repository,
-            ILogger<BaseService<TDto, TCreateDto, TEntity>> logger)
+            ILogger<BaseService<TDto, TCreateDto, TUpdateDto, TEntity>> logger)
         {
             _repository = repository;
             _logger = logger;
@@ -19,7 +19,7 @@ namespace SB.PayrollManagement.Application.Services
 
         protected abstract TDto MapToDto(TEntity entity);
         protected abstract TEntity MapToEntity(TCreateDto dto);
-        protected abstract void UpdateEntity(TCreateDto dto, TEntity entity);
+        protected abstract void UpdateEntity(TUpdateDto dto, TEntity entity);
 
         public async Task<OperationResult<List<TDto>>> GetAllAsync()
         {
@@ -93,7 +93,7 @@ namespace SB.PayrollManagement.Application.Services
             }
         }
 
-        public async Task<OperationResult<TDto>> UpdateAsync(int id, TCreateDto dto)
+        public async Task<OperationResult<TDto>> UpdateAsync(int id, TUpdateDto dto)
         {
             try
             {
@@ -133,7 +133,35 @@ namespace SB.PayrollManagement.Application.Services
 
         public async Task<OperationResult<TDto>> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (id <= 0)
+                {
+                    return OperationResult<TDto>.Failure("The ID must be greater than 0");
+                }
+
+                var existingResult = await _repository.GetByIdAsync(id);
+                if (!existingResult.IsSuccess || existingResult.Data is null)
+                {
+                    return OperationResult<TDto>.Failure(existingResult.Message ?? $"No entity found with ID {id}");
+                }
+
+                TEntity existingEntity = existingResult.Data;
+                var dto = MapToDto(existingEntity);
+
+                var result = await _repository.DeleteAsync(existingEntity);
+                if (!result.IsSuccess)
+                {
+                    return OperationResult<TDto>.Failure(result.Message ?? "Error deleting the entity");
+                }
+
+                return OperationResult<TDto>.Success("Entity deleted successfully", dto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while deleting the entity with ID {Id}", id);
+                return OperationResult<TDto>.Failure($"Error deleting entity: {ex.Message}");
+            }
         }
     }
 }

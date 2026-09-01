@@ -7,10 +7,10 @@ using SB.PayrollManagement.Domain.Entities;
 
 namespace SB.PayrollManagement.Application.Services
 {
-    public class GovernmentService : BaseService<GovernmentDto, CreateGovernmentDto, GovernmentEntities>, IGovernmentService
+    public class GovernmentService : BaseService<GovernmentDto, CreateGovernmentDto, CreateGovernmentDto, GovernmentEntities>, IGovernmentService
     {
         public GovernmentService(IGovermentRepository repository,
-            ILogger<BaseService<GovernmentDto, CreateGovernmentDto, GovernmentEntities>> logger)
+            ILogger<BaseService<GovernmentDto, CreateGovernmentDto, CreateGovernmentDto, GovernmentEntities>> logger)
             : base(repository, logger)
         {
         }

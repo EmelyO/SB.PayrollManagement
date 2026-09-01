@@ -2,7 +2,7 @@
 
 namespace SB.PayrollManagement.Application.Interfaces.Services
 {
-    public interface IEmployeeService: IBaseService<EmployeeDto, EmployeeDto>
+    public interface IEmployeeService: IBaseService<EmployeeDto, CreateEmployeeDto, CreateEmployeeDto>
     {
     }
 }
