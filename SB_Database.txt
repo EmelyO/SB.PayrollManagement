@@ -1,0 +1,126 @@
+﻿Create database SB_PayrollManagement
+
+
+use SB_PayrollManagement;
+
+
+create table GovernmentEntities (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(300) NOT NULL,
+    Category NVARCHAR(150) NOT NULL,
+    StatePower NVARCHAR(100) NOT NULL,
+    Sector NVARCHAR(150) NOT NULL,
+    CreatedDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    UpdatedDate DATETIME2 NULL
+);
+
+
+CREATE TABLE EmployeeTypes (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL UNIQUE
+);
+ 
+CREATE TABLE Departments (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(150) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE Employees (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    EmployeeTypeId INT NOT NULL,
+    FirstName NVARCHAR(150) NOT NULL,
+    LastName NVARCHAR(150) NOT NULL,
+    SocialSecurityNumber NVARCHAR(50) NOT NULL,
+    DepartmentId INT NULL,
+    CreatedDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    UpdatedDate DATETIME2 NULL,
+    CONSTRAINT FK_Employees_EmployeeTypes FOREIGN KEY (EmployeeTypeId) REFERENCES EmployeeTypes(Id),
+    CONSTRAINT FK_Employees_Departments FOREIGN KEY (DepartmentId) REFERENCES Departments(Id)
+);
+
+
+CREATE TABLE SalariedEmployees (
+    EmployeeId INT PRIMARY KEY,
+    WeeklySalary DECIMAL(18,2) NOT NULL,
+    CONSTRAINT FK_SalariedEmployees_Employees FOREIGN KEY (EmployeeId) REFERENCES Employees(Id) ON DELETE CASCADE
+);
+
+
+ 
+CREATE TABLE HourlyEmployees (
+    EmployeeId INT PRIMARY KEY,
+    HourlyRate DECIMAL(18,2) NOT NULL,
+    HoursWorked DECIMAL(18,2) NOT NULL,
+    CONSTRAINT FK_HourlyEmployees_Employees FOREIGN KEY (EmployeeId) REFERENCES Employees(Id) ON DELETE CASCADE
+);
+
+
+ 
+CREATE TABLE CommissionEmployees (
+    EmployeeId INT PRIMARY KEY,
+    GrossSales DECIMAL(18,2) NOT NULL,
+    CommissionRate DECIMAL(5,4) NOT NULL,
+    CONSTRAINT FK_CommissionEmployees_Employees FOREIGN KEY (EmployeeId) REFERENCES Employees(Id) ON DELETE CASCADE
+);
+
+
+ 
+CREATE TABLE SalariedCommissionEmployees (
+    EmployeeId INT PRIMARY KEY,
+    GrossSales DECIMAL(18,2) NOT NULL,
+    CommissionRate DECIMAL(5,4) NOT NULL,
+    BaseSalary DECIMAL(18,2) NOT NULL,
+    CONSTRAINT FK_SalariedCommissionEmployees_Employees FOREIGN KEY (EmployeeId) REFERENCES Employees(Id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Roles (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(50) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE Users (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Username NVARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(500) NOT NULL,
+    RoleId INT NOT NULL,
+    CreatedDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    UpdatedDate DATETIME2 NULL,
+    CONSTRAINT FK_Users_Roles FOREIGN KEY (RoleId) REFERENCES Roles(Id)
+);
+
+
+INSERT INTO Roles (Name) VALUES
+('Administrador'),
+('Usuario');
+
+
+INSERT INTO EmployeeTypes (Name) VALUES
+('Asalariado'),
+('Por Horas'),
+('Por Comisión'),
+('Asalariado por Comisión');
+
+
+INSERT INTO Departments (Name) VALUES
+('Ventas'),
+('Tecnología'),
+('Recursos Humanos'),
+('Finanzas'),
+('Operaciones');
+
+
+CREATE TABLE PayrollRecords (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    EmployeeId INT NOT NULL,
+    WeekStartDate DATE NOT NULL,
+    WeekEndDate DATE NOT NULL,
+    HoursWorked DECIMAL(18,2) NULL,
+    GrossSales DECIMAL(18,2) NULL,
+    CalculatedPay DECIMAL(18,2) NOT NULL,
+    CreatedDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    CONSTRAINT FK_PayrollRecords_Employees FOREIGN KEY (EmployeeId) REFERENCES Employees(Id),
+    CONSTRAINT UQ_PayrollRecords_Employee_Week UNIQUE (EmployeeId, WeekStartDate)
+);
