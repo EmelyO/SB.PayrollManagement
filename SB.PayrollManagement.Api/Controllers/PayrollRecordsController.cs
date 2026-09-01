@@ -18,6 +18,17 @@ namespace SB.PayrollManagement.Api.Controllers
             _payrollService = payrollService;
         }
 
+        [HttpGet("report")]
+        public async Task<IActionResult> GetWeeklyReport([FromQuery] DateOnly weekStartDate)
+        {
+            var result = await _payrollService.GetWeeklyReportAsync(weekStartDate);
+            if (!result.IsSuccess)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, result);
+            }
+            return Ok(result);
+        }
+
         [HttpGet("{employeeId:int}")]
         public async Task<IActionResult> GetHistory(int employeeId)
         {

@@ -8,5 +8,6 @@ namespace SB.PayrollManagement.Application.Interfaces.Services
         Task<OperationResult<EmployeePayDto>> GetWeeklyPayAsync(int employeeId);
         Task<OperationResult<PayrollRecordDto>> CreatePayrollRecordAsync(CreatePayrollRecordDto dto);
         Task<OperationResult<List<PayrollRecordDto>>> GetHistoryAsync(int employeeId);
+        Task<OperationResult<List<WeeklyReportItemDto>>> GetWeeklyReportAsync(DateOnly weekStartDate);
     }
 }

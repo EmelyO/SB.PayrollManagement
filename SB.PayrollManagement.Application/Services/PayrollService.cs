@@ -205,6 +205,68 @@ namespace SB.PayrollManagement.Application.Services
             }
         }
 
+        public async Task<OperationResult<List<WeeklyReportItemDto>>> GetWeeklyReportAsync(DateOnly weekStartDate)
+        {
+            try
+            {
+                var recordsResult = await _payrollRecordRepository.GetAllAsync(p => p.WeekStartDate == weekStartDate);
+                if (!recordsResult.IsSuccess || recordsResult.Data is null)
+                {
+                    return OperationResult<List<WeeklyReportItemDto>>.Failure(recordsResult.Message ?? "No records found");
+                }
+
+                List<PayrollRecords> records = recordsResult.Data;
+                if (records.Count == 0)
+                {
+                    return OperationResult<List<WeeklyReportItemDto>>.Success("No payroll records for this week", new List<WeeklyReportItemDto>());
+                }
+
+                var employeeIds = records.Select(r => r.EmployeeId).Distinct().ToList();
+                var employeesResult = await _employeeRepository.GetAllAsync(e => employeeIds.Contains(e.Id));
+                List<Employees> employees = employeesResult.IsSuccess && employeesResult.Data is not null
+                    ? employeesResult.Data
+                    : new List<Employees>();
+                var employeesById = employees.ToDictionary(e => e.Id);
+
+                var typeIds = employees.Select(e => e.EmployeeTypeId).Distinct().ToList();
+                var typesResult = await _employeeTypeRepository.GetAllAsync(t => typeIds.Contains(t.Id));
+                List<EmployeeTypes> types = typesResult.IsSuccess && typesResult.Data is not null
+                    ? typesResult.Data
+                    : new List<EmployeeTypes>();
+                var typesById = types.ToDictionary(t => t.Id);
+
+                var report = records
+                    .Select(r =>
+                    {
+                        employeesById.TryGetValue(r.EmployeeId, out var employee);
+                        var employeeTypeName = string.Empty;
+                        if (employee is not null && typesById.TryGetValue(employee.EmployeeTypeId, out var type))
+                        {
+                            employeeTypeName = type.Name;
+                        }
+
+                        return new WeeklyReportItemDto
+                        {
+                            EmployeeId = r.EmployeeId,
+                            EmployeeName = employee is not null ? $"{employee.FirstName} {employee.LastName}" : "Unknown",
+                            EmployeeType = employeeTypeName,
+                            HoursWorked = r.HoursWorked,
+                            GrossSales = r.GrossSales,
+                            CalculatedPay = r.CalculatedPay
+                        };
+                    })
+                    .OrderBy(r => r.EmployeeName)
+                    .ToList();
+
+                return OperationResult<List<WeeklyReportItemDto>>.Success("Weekly report generated successfully", report);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error generating weekly report for week {WeekStartDate}", weekStartDate);
+                return OperationResult<List<WeeklyReportItemDto>>.Failure($"Error: {ex.Message}");
+            }
+        }
+
         private async Task<EmployeeTypes?> GetEmployeeTypeAsync(int employeeId)
         {
             var employeeResult = await _employeeRepository.GetByIdAsync(employeeId);
